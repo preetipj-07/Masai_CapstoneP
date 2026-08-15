@@ -1,5 +1,17 @@
 ## Part 1: Dataset & Baseline Models
 
+## The goal
+“This project builds a return‑risk prediction model for e‑commerce orders. It uses synthetic data with realistic properties (return rates, missing ratings), evaluates baseline and machine learning models, and tunes thresholds for business trade‑offs.”
+
+## Repository structure
+List of the files and what they do:
+generate_orders.py → creates dataset
+orders_dataset.csv → synthetic dataset (6,000 rows × 13 columns, target = returned)
+verify_dataset.py → checks dataset properties
+baseline_model.py → DummyClassifier baseline
+logistic_regression.py → Logistic Regression with threshold sweep
+README.md → project documentation
+
 ### Dataset Generation
 - Script: `generate_orders.py`  
 - Output: `orders_dataset.csv` with **6,000 rows and 13 columns**  
