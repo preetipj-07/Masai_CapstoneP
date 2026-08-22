@@ -1,0 +1,47 @@
+Part 2 — Training & Evaluation Log (run: 2026-08-20, device: cpu)
+==================================================================
+
+TASK 1: Load Fashion-MNIST
+Train: 54000 | Val: 6000 | Test: 10000
+Input size: 64x64 RGB (grayscale replicated to 3 channels)
+Normalization: ImageNet mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]
+
+TASK 2 & 3: Build ResNet-18 + Cache Features
+Total params: 11,181,642 | Trainable (head only): 5,130
+Feature shapes: train=(54000, 512), val=(6000, 512), test=(10000, 512)
+
+Head training on cached features:
+  Epoch 10/10  loss=1.4755  val_acc=0.5877
+
+Feature extraction validation accuracy: 0.5877
+
+TASK 4: Fine-tuning (triggered: 0.5877 < 0.80; unfroze layer3+layer4, lr=1e-4)
+  FT Epoch 1/2  loss=0.3678  train_acc=0.8700  val_acc=0.9207
+  FT Epoch 2/2  loss=0.1610  train_acc=0.9422  val_acc=0.9260
+Before fine-tuning: 0.5877 -> After fine-tuning: 0.9260
+
+TASK 5: Test-Set Evaluation
+Test accuracy: 0.9178 (91.78%)
+
+Confusion Matrix:
+  T-shirt/top      [872   1  13  26   2   0  81   0   5   0]
+  Trouser          [  2 978   1  15   1   0   1   0   2   0]
+  Pullover         [ 13   0 889   9  31   0  57   0   1   0]
+  Dress            [ 18   1   8 920   7   0  45   0   0   1]
+  Coat             [  2   1  57  36 820   0  84   0   0   0]
+  Sandal           [  0   0   0   0   0 985   0  12   0   3]
+  Shirt            [100   0  55  24  39   0 779   0   3   0]
+  Sneaker          [  0   0   0   0   0   8   0 972   0  20]
+  Bag              [  2   1   1   1   0   1   2   0 992   0]
+  Ankle boot       [  1   0   0   0   0   6   0  22   0 971]
+
+Top confusion pairs:
+  Shirt        -> T-shirt/top : 100 misclassifications
+  Coat         -> Shirt       : 84 misclassifications
+  T-shirt/top  -> Shirt       : 81 misclassifications
+  Pullover     -> Shirt       : 57 misclassifications
+  Coat         -> Pullover    : 57 misclassifications
+
+TASK 7: Saved models/product_classifier.pt (fine_tuned=True, val_acc=0.9260)
+
+TASK 8: Exported 10 sample PNGs to data/sample_images/ (one per class)
