@@ -1,0 +1,9 @@
+# Large dataset raw files (re-downloaded automatically by torchvision)
+data/FashionMNIST/
+
+# Python
+__pycache__/
+*.pyc
+
+# Vector index build cache (regenerate with part3/build_index.py)
+part3/vector_index/
